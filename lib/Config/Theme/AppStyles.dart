@@ -29,4 +29,11 @@ fontSize: 24.sp,
 fontWeight: FontWeight.w400,
 fontSize: 22.sp,
   );
+  static  TextStyle SelectedSourceItem = GoogleFonts.exo(color:ColorsManager.white, fontSize: 14 , fontWeight: FontWeight.w400);
+  static  TextStyle UnSelectedSourceItem = GoogleFonts.exo(color:ColorsManager.green, fontSize: 14 , fontWeight: FontWeight.w400);
+  static  TextStyle ArticleSource = GoogleFonts.poppins(color:ColorsManager.offWhite, fontSize: 12 , fontWeight: FontWeight.w400);
+  static  TextStyle ArticleTitle = GoogleFonts.poppins(color:ColorsManager.veryOffWhite, fontSize: 17 , fontWeight: FontWeight.w700);
+  static  TextStyle ArticleContent = GoogleFonts.poppins(color:ColorsManager.veryOffWhite, fontSize: 13 , fontWeight: FontWeight.w300);
+  static  TextStyle WebButton = GoogleFonts.poppins(color:ColorsManager.veryOffWhite, fontSize: 15 , fontWeight: FontWeight.w500);
+  static  TextStyle SearchText = GoogleFonts.poppins(color:ColorsManager.green, fontSize: 14 , fontWeight: FontWeight.w400);
 }
