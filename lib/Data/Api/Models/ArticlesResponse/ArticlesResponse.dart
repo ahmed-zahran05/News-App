@@ -4,7 +4,8 @@ class ArticlesResponse {
   ArticlesResponse({
       this.status, 
       this.totalResults, 
-      this.articles,});
+      this.articles,  this.code,
+    this.message});
 
   ArticlesResponse.fromJson(dynamic json) {
     status = json['status'];
@@ -12,13 +13,16 @@ class ArticlesResponse {
     if (json['articles'] != null) {
       articles = [];
       json['articles'].forEach((v) {
-        articles?.add(Articles.fromJson(v));
+        articles?.add(Article.fromJson(v));
       });
     }
   }
   String? status;
   num? totalResults;
-  List<Articles>? articles;
+  String? code;
+  String? message;
+
+  List<Article>? articles;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

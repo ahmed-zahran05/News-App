@@ -7,7 +7,7 @@ import 'package:newsapp/Data/Api/Models/ArticlesResponse/Articles.dart';
 
 class ArticleItem extends StatelessWidget {
   ArticleItem({super.key, required this.articleobject}) ;
-  Articles articleobject;
+  Article articleobject;
   @override
   Widget build(BuildContext context) {
     return  InkWell(onTap: () {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Config/Theme/AppStyles.dart';
 import 'package:newsapp/Core/Utills/StringsManager.dart';
-import 'package:newsapp/Data_Model/CategoryDataModel.dart';
+import 'package:newsapp/Data/Data_Model/CategoryDataModel.dart';
 import '../Widget/CategoryWidget.dart';
 
 typedef OnCategoryItemClicked = void Function(  CategoryDm category );

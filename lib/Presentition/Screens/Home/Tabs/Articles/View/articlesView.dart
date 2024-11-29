@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Data/Api/Models/ArticlesResponse/Articles.dart';
-import 'package:newsapp/Data/Api/Models/SourcsesResponse/Sources.dart';
+import 'package:newsapp/Common/Base/Base_State.dart';
+import 'package:newsapp/Common/Widget/LoadingWidget.dart';
+import 'package:newsapp/Data/Api/Models/SourcsesResponse/Source.dart';
 import 'package:newsapp/Presentition/Screens/Home/Tabs/Articles/View_Model/ArticlesVM.dart';
 import 'package:provider/provider.dart';
 import '../Widget/ArticleItem.dart';
 
 class ArticlesList extends StatefulWidget {
   ArticlesList({super.key , required this.source});
-  Sources source ;
+  Source source ;
 
   @override
   State<ArticlesList> createState() => _ArticlesListState();
@@ -25,26 +26,27 @@ class _ArticlesListState extends State<ArticlesList> {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
     if(oldWidget.source.id != widget.source.id){
-    viewModel.getArticlesBySourceId(widget.source.id!);
+      viewModel.getArticlesBySourceId(widget.source.id!);
     }
   }
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
         value: viewModel ,
-        child: Consumer<ArticlesVM>(builder: (context, value, child) {
-          if(viewModel.isLoading!){
-            return const Center(child: CircularProgressIndicator());
+        child: Consumer<ArticlesVM>(builder: (context, viewModel, child) {
+          var state = viewModel.state;
+
+          switch(state) {
+            case SuccessState():
+              return  Expanded(child: ListView.builder(itemBuilder: (context, index) => ArticleItem(articleobject: state.data![index]) , itemCount: state.data?.length,));
+            case LoadingState():
+              return Loadingwidget();
+            case ErrorState():
+              return ErrorWidget(state.error!);
           }
-          if(viewModel.errorMessage != null){
-            return Text("${viewModel.errorMessage}");
-          }
-          List<Articles> articles = viewModel.articles ?? [] ;
-          return Expanded(child: ListView.builder(itemBuilder: (context, index) => ArticleItem(articleobject: articles[index]) , itemCount: articles.length,));
+
         }
         )
     );
   }
 }
-
-

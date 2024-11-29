@@ -13,7 +13,7 @@ class ArticleDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Articles article = ModalRoute.of(context)?.settings.arguments as Articles;
+    Article article = ModalRoute.of(context)?.settings.arguments as Article;
     return Container(
       decoration: const BoxDecoration(
         color: ColorsManager.white,

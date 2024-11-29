@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/Common/Base/Base_State.dart';
+import 'package:newsapp/Common/Result/Result.dart';
 import 'package:newsapp/Data/Api/Models/ArticlesResponse/Articles.dart';
 import 'package:newsapp/Data/Api/api_manager/api_mannager.dart';
 
-class ArticlesVM extends ChangeNotifier{
-  List<Articles>? articles ;
-  String? errorMessage;
-  bool? isLoading;
+class ArticlesVM extends ChangeNotifier {
+  BaseState state = LoadingState();
 
-  Future<void>  getArticlesBySourceId(String SourceID) async {
-    try{
-      isLoading = true ;
-      notifyListeners();
-      var response = await apiManager.getArticles(SourceID);
-      isLoading = false ;
-      if(response.status == 'ok'){
-        articles = response.articles ;
-      }
-      else{
-        errorMessage = "SomeThing Went Wrong" ;
-      }
-      notifyListeners();
-    }
-    catch(e){
-      isLoading = false ;
-      errorMessage = "Check Internet Connection" ;
-      notifyListeners();
+  void emit(BaseState newState) {
+    state = newState;
+    notifyListeners();
+  }
+
+  Future<void> getArticlesBySourceId(String SourceID) async {
+    emit(LoadingState());
+    var result = await apiManager.getArticles(SourceID);
+
+    switch (result) {
+      case Success<List<Article>>():
+        emit(SuccessState(data: result.data));
+
+      case ServerError<List<Article>>():
+        emit(ErrorState(serverError: result));
+
+      case Error<List<Article>>():
+        emit(ErrorState(error: result));
     }
   }
 }

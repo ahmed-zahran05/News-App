@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/Config/Theme/AppStyles.dart';
 import 'package:newsapp/Core/Utills/ColorsManager.dart';
-import 'package:newsapp/Data/Api/Models/SourcsesResponse/Sources.dart';
+import 'package:newsapp/Data/Api/Models/SourcsesResponse/Source.dart';
 
 class Sourceitem extends StatelessWidget {
    Sourceitem({super.key , required this.source , required this.isSelected});
-  Sources source ;
+  Source source ;
   bool isSelected;
   @override
   Widget build(BuildContext context) {

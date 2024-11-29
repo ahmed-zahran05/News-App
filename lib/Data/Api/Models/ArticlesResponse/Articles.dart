@@ -1,7 +1,7 @@
-import 'Source.dart';
+import 'package:newsapp/Data/Api/Models/SourcsesResponse/Source.dart';
 
-class Articles {
-  Articles({
+class Article {
+  Article({
       this.source, 
       this.author, 
       this.title, 
@@ -11,7 +11,7 @@ class Articles {
       this.publishedAt, 
       this.content,});
 
-  Articles.fromJson(dynamic json) {
+  Article.fromJson(dynamic json) {
     source = json['source'] != null ? Source.fromJson(json['source']) : null;
     author = json['author'];
     title = json['title'];

@@ -1,21 +1,28 @@
-import 'Sources.dart';
+
+import 'Source.dart';
+
 
 class SourcesResponse {
   SourcesResponse({
-      this.status, 
-      this.sources,});
+      this.status,
+      this.sources,
+      this.code,
+      this.message
+  });
 
+  String? status;
+  String? code;
+  String? message;
+  List<Source>? sources;
   SourcesResponse.fromJson(dynamic json) {
     status = json['status'];
     if (json['sources'] != null) {
       sources = [];
       json['sources'].forEach((v) {
-        sources?.add(Sources.fromJson(v));
+        sources?.add(Source.fromJson(v));
       });
     }
   }
-  String? status;
-  List<Sources>? sources;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

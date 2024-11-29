@@ -1,14 +1,22 @@
-class Sources {
-  Sources({
-      this.id, 
-      this.name, 
-      this.description, 
-      this.url, 
-      this.category, 
-      this.language, 
+class Source {
+  String? id;
+  String? name;
+  String? description;
+  String? url;
+  String? category;
+  String? language;
+  String? country;
+  Source({
+      this.id,
+      this.name,
+      this.description,
+      this.url,
+      this.category,
+      this.language,
       this.country,});
 
-  Sources.fromJson(dynamic json) {
+
+  Source.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
@@ -17,14 +25,6 @@ class Sources {
     language = json['language'];
     country = json['country'];
   }
-  String? id;
-  String? name;
-  String? description;
-  String? url;
-  String? category;
-  String? language;
-  String? country;
-
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
