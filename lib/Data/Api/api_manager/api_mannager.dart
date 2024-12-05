@@ -45,7 +45,7 @@ class apiManager {
     }
   }
 
-  static Future<Result<List<Article>>> getArticles(String sourceId) async {
+   Future<Result<List<Article>>> getArticles(String sourceId) async {
     Uri url = Uri.https(
         baseUrl,
         articlesEndPoint, {
